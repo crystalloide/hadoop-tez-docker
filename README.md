@@ -133,6 +133,30 @@ hdfs dfs -cat /output/part-r-00000
 
 ```
 
+Si on souhaitait revenir à MapReduce de façon permanente, il faudrait modifier simplement le fichier config :
+
+Arrêter le cluster :
+
+```bash
+docker compose -f docker-compose-cluster-latest.yml down -v 
+```
+
+Remplacer :
+
+```bash
+MAPRED-SITE.XML_mapreduce.framework.name=yarn-tez
+```
+
+par :
+```bash
+MAPRED-SITE.XML_mapreduce.framework.name=yarn
+```
+
+Redémarrer le cluster :
+
+```bash
+docker compose -f docker-compose-cluster-latest.yml up -d
+```
 
 ## IHM Web
 
