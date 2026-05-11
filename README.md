@@ -117,7 +117,7 @@ hdfs dfs -cat /output/part-r-00000
 ```bash
 # Exemple 2 : WordCount via MR
 hdfs dfs -rm -r /output
-docker exec -it namenode yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar \
+yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar \
   -Dmapreduce.framework.name=yarn wordcount /input /output
 ```
 
