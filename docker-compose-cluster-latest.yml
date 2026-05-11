@@ -1,6 +1,6 @@
 services:
    namenode:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: namenode
       command: ["hdfs", "namenode"]
       ports:
@@ -10,25 +10,25 @@ services:
       environment:
           ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
    datanode1:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: datanode1
       command: ["hdfs", "datanode"]
       env_file:
         - ./config     
    datanode2:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: datanode2
       command: ["hdfs", "datanode"]
       env_file:
         - ./config  
    datanode3:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: datanode3
       command: ["hdfs", "datanode"]
       env_file:
         - ./config   
    resourcemanager:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: resourcemanager
       command: ["yarn", "resourcemanager"]
       ports:
@@ -38,19 +38,19 @@ services:
       volumes:
         - ./test.sh:/opt/test.sh
    nodemanager1:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: nodemanager1
       command: ["yarn", "nodemanager"]
       env_file:
         - ./config
    nodemanager2:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: nodemanager2
       command: ["yarn", "nodemanager"]
       env_file:
         - ./config
    nodemanager3:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.4.2
       hostname: nodemanager3
       command: ["yarn", "nodemanager"]
       env_file:
