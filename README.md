@@ -99,7 +99,7 @@ hdfs dfs -cat /input/test.txt
 ```
 
 ```bash
-# Exemple : WordCount via Tez
+# Exemple 1 : WordCount via Tez
 yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar wordcount /input /output
 ```
 
@@ -111,6 +111,29 @@ hdfs dfs -ls /output/
 hdfs dfs -cat /output/part-r-00000
 
 ```
+
+
+```bash
+# Exemple 2 : WordCount via MR
+hdfs dfs -rm -r /output
+docker exec -it namenode yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar \
+  -Dmapreduce.framework.name=yarn wordcount /input /output
+```
+
+Comment vérifier que c'est bien du MapReduce ?
+
+Dans les logs du terminal : on voit apparaître les étapes classiques map 0% reduce 0% gérées par le MRAppMaster au lieu du DAGAppMaster.
+
+Sur l'interface Web (Resource Manager) : Allez sur http://localhost:8088. Dans la colonne "Application Type", vous devriez voir MAPREDUCE au lieu de TEZ.
+
+```bash
+# Regardons le résultat du WordCount via MR 
+hdfs dfs -ls /output/
+hdfs dfs -cat /output/part-r-00000
+
+```
+
+
 ## IHM Web
 
 | Service         | URL                        |
