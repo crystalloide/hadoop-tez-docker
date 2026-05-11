@@ -118,7 +118,7 @@ hdfs dfs -cat /output/part-r-00000
 # Exemple 2 : WordCount via MR
 hdfs dfs -rm -r /output
 yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar \
-  -Dmapreduce.framework.name=yarn wordcount /input /output
+  wordcount -Dmapreduce.framework.name=yarn /input /output
 ```
 
 Comment vérifier que c'est bien du MapReduce ?
