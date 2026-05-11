@@ -2,11 +2,12 @@ FROM apache/hadoop:3.4.2
 
 USER root
 
-ENV TEZ_VERSION=0.10.4
+ENV TEZ_VERSION=0.10.5
 ENV TEZ_HOME=/opt/tez
 
 # Téléchargement et installation de Apache Tez
-RUN curl -fSL "https://archive.apache.org/dist/tez/${TEZ_VERSION}/apache-tez-${TEZ_VERSION}-bin.tar.gz" \
+# RUN curl -fSL "https://archive.apache.org/dist/tez/${TEZ_VERSION}/apache-tez-${TEZ_VERSION}-bin.tar.gz" \
+RUN curl -fSL "https://downloads.apache.org/tez/${TEZ_VERSION}/apache-tez-${TEZ_VERSION}-bin.tar.gz" \
         -o /tmp/tez.tar.gz \
     && mkdir -p ${TEZ_HOME} \
     && tar -xzf /tmp/tez.tar.gz -C ${TEZ_HOME} --strip-components=1 \
