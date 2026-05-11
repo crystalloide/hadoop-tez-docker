@@ -16,7 +16,7 @@ sudo rm -Rf Hadoop-docker
 
 git clone https://github.com/crystalloide/Hadoop-docker
 
-cd hadoop-2026
+cd Hadoop-docker
 
 ```
 
