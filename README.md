@@ -1,4 +1,4 @@
-# Cluster Hadoop 3.4.2 + Apache Tez 0.10.4
+# Cluster Hadoop 3.4.2 + Apache Tez 0.10.5
 
 ## Structure du projet
 
