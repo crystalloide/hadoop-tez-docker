@@ -88,7 +88,9 @@ hdfs dfs -rmdir --ignore-fail-on-non-empty /input
 hdfs dfs -rmdir --ignore-fail-on-non-empty /output
 hdfs dfs -mkdir -p /input
 hdfs dfs -mkdir -p /output
+```
 
+```bash
 echo "hello world hello tez" | hdfs dfs -put - /input/test.txt
 
 yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar wordcount /input /output
