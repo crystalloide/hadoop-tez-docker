@@ -159,6 +159,9 @@ Redémarrer le cluster :
 docker compose -f docker-compose-cluster-latest.yml up -d
 ```
 
+<img width="2552" height="537" alt="image" src="https://github.com/user-attachments/assets/bfbb7430-52bc-47b3-ab8a-ecee571ba28f" />
+
+
 ## IHM Web
 
 | Service         | URL                        |
