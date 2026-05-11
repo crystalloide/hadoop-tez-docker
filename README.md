@@ -89,12 +89,14 @@ hdfs dfs -rmdir --ignore-fail-on-non-empty /output
 hdfs dfs -mkdir -p /input
 hdfs dfs -mkdir -p /output
 hdfs dfs -ls /
+
 ```
 
 ```bash
 # Exemple : On crée le fichier en entrée du WordCount
 echo "hello world hello tez" | hdfs dfs -put - /input/test.txt
 hdfs dfs -cat /input/test.txt
+
 ```
 
 ```bash
