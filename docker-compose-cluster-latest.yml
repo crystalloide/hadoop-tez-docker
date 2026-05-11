@@ -4,6 +4,7 @@ services:
   namenode:
     build: .
     hostname: namenode
+    container_name: namenode
     command: ["hdfs", "namenode"]
     ports:
       - 9870:9870
@@ -23,6 +24,7 @@ services:
   datanode1:
     build: .
     hostname: datanode1
+    container_name: datanode1
     command: ["hdfs", "datanode"]
     env_file:
       - ./config
@@ -33,6 +35,7 @@ services:
   datanode2:
     build: .
     hostname: datanode2
+    container_name: datanode2
     command: ["hdfs", "datanode"]
     env_file:
       - ./config
@@ -43,6 +46,7 @@ services:
   datanode3:
     build: .
     hostname: datanode3
+    container_name: datanode3
     command: ["hdfs", "datanode"]
     env_file:
       - ./config
@@ -54,6 +58,7 @@ services:
   resourcemanager:
     build: .
     hostname: resourcemanager
+    container_name: resourcemanager
     command: ["yarn", "resourcemanager"]
     ports:
       - 8088:8088
@@ -69,6 +74,7 @@ services:
   nodemanager1:
     build: .
     hostname: nodemanager1
+    container_name: nodemanager1
     command: ["yarn", "nodemanager"]
     env_file:
       - ./config
@@ -79,6 +85,7 @@ services:
   nodemanager2:
     build: .
     hostname: nodemanager2
+    container_name: nodemanager2
     command: ["yarn", "nodemanager"]
     env_file:
       - ./config
@@ -89,6 +96,7 @@ services:
   nodemanager3:
     build: .
     hostname: nodemanager3
+    container_name: nodemanager3
     command: ["yarn", "nodemanager"]
     env_file:
       - ./config
@@ -103,6 +111,7 @@ services:
   tez-init:
     build: .
     hostname: tez-init
+    container_name: tez-init
     command: ["/bin/bash", "/opt/init-tez.sh"]
     env_file:
       - ./config
