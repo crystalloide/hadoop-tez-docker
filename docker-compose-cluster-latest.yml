@@ -1,57 +1,114 @@
 services:
-   namenode:
-      image: apache/hadoop:3.4.2
-      hostname: namenode
-      command: ["hdfs", "namenode"]
-      ports:
-        - 9870:9870
-      env_file:
-        - ./config
-      environment:
-          ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
-   datanode1:
-      image: apache/hadoop:3.4.2
-      hostname: datanode1
-      command: ["hdfs", "datanode"]
-      env_file:
-        - ./config     
-   datanode2:
-      image: apache/hadoop:3.4.2
-      hostname: datanode2
-      command: ["hdfs", "datanode"]
-      env_file:
-        - ./config  
-   datanode3:
-      image: apache/hadoop:3.4.2
-      hostname: datanode3
-      command: ["hdfs", "datanode"]
-      env_file:
-        - ./config   
-   resourcemanager:
-      image: apache/hadoop:3.4.2
-      hostname: resourcemanager
-      command: ["yarn", "resourcemanager"]
-      ports:
-         - 8088:8088
-      env_file:
-        - ./config
-      volumes:
-        - ./test.sh:/opt/test.sh
-   nodemanager1:
-      image: apache/hadoop:3.4.2
-      hostname: nodemanager1
-      command: ["yarn", "nodemanager"]
-      env_file:
-        - ./config
-   nodemanager2:
-      image: apache/hadoop:3.4.2
-      hostname: nodemanager2
-      command: ["yarn", "nodemanager"]
-      env_file:
-        - ./config
-   nodemanager3:
-      image: apache/hadoop:3.4.2
-      hostname: nodemanager3
-      command: ["yarn", "nodemanager"]
-      env_file:
-        - ./config
+
+  # ── NameNode ────────────────────────────────────────────────────────────────
+  namenode:
+    build: .
+    hostname: namenode
+    command: ["hdfs", "namenode"]
+    ports:
+      - 9870:9870
+    env_file:
+      - ./config
+    environment:
+      ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+    healthcheck:
+      # Le NameNode est "healthy" uniquement quand il est sorti du safe mode
+      test: ["CMD-SHELL", "hdfs dfsadmin -safemode get 2>/dev/null | grep -q 'Safe mode is OFF'"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 40s
+
+  # ── DataNodes ───────────────────────────────────────────────────────────────
+  datanode1:
+    build: .
+    hostname: datanode1
+    command: ["hdfs", "datanode"]
+    env_file:
+      - ./config
+    depends_on:
+      namenode:
+        condition: service_started
+
+  datanode2:
+    build: .
+    hostname: datanode2
+    command: ["hdfs", "datanode"]
+    env_file:
+      - ./config
+    depends_on:
+      namenode:
+        condition: service_started
+
+  datanode3:
+    build: .
+    hostname: datanode3
+    command: ["hdfs", "datanode"]
+    env_file:
+      - ./config
+    depends_on:
+      namenode:
+        condition: service_started
+
+  # ── ResourceManager ─────────────────────────────────────────────────────────
+  resourcemanager:
+    build: .
+    hostname: resourcemanager
+    command: ["yarn", "resourcemanager"]
+    ports:
+      - 8088:8088
+    env_file:
+      - ./config
+    volumes:
+      - ./test.sh:/opt/test.sh
+    depends_on:
+      namenode:
+        condition: service_started
+
+  # ── NodeManagers ─────────────────────────────────────────────────────────────
+  nodemanager1:
+    build: .
+    hostname: nodemanager1
+    command: ["yarn", "nodemanager"]
+    env_file:
+      - ./config
+    depends_on:
+      namenode:
+        condition: service_started
+
+  nodemanager2:
+    build: .
+    hostname: nodemanager2
+    command: ["yarn", "nodemanager"]
+    env_file:
+      - ./config
+    depends_on:
+      namenode:
+        condition: service_started
+
+  nodemanager3:
+    build: .
+    hostname: nodemanager3
+    command: ["yarn", "nodemanager"]
+    env_file:
+      - ./config
+    depends_on:
+      namenode:
+        condition: service_started
+
+  # ── Tez Init (one-shot) ──────────────────────────────────────────────────────
+  # Ce service s'exécute une seule fois au démarrage du cluster.
+  # Il attend que le NameNode soit healthy (safe mode OFF),
+  # puis uploade le tarball Tez sur HDFS. Il s'arrête ensuite proprement.
+  tez-init:
+    build: .
+    hostname: tez-init
+    command: ["/bin/bash", "/opt/init-tez.sh"]
+    env_file:
+      - ./config
+    volumes:
+      - ./init-tez.sh:/opt/init-tez.sh:ro
+    depends_on:
+      namenode:
+        condition: service_healthy
+    restart: "no"
