@@ -105,6 +105,12 @@ yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar
 
 Le job sera automatiquement exécuté par Tez grâce à `mapreduce.framework.name=yarn-tez`.
 
+```bash
+# Regardons le résultat du WordCount
+hdfs dfs -ls /output/
+hdfs dfs -cat /output/part-r-00000
+
+```
 ## IHM Web
 
 | Service         | URL                        |
