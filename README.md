@@ -45,7 +45,7 @@ cd hadoop-tez-docker
 
 ```
     
-## Démarrage
+### Démarrage
 
 ```bash
 # 1. Construire l'image et démarrer le cluster
@@ -63,7 +63,7 @@ Tez-Init : TERMINÉ avec succès !
 Le cluster Hadoop est prêt à exécuter des jobs via Tez.
 ```
 
-## Vérifier l'installation
+### Vérifier l'installation
 
 ```bash
 # Vérifier que le tarball est bien sur HDFS
@@ -76,7 +76,7 @@ docker exec namenode hdfs getconf -confKey mapreduce.framework.name
 ```
 
 
-## Lancer un job MapReduce via Tez
+### Lancer un job MapReduce via Tez
 
 ```bash
 docker exec -it namenode bash
@@ -112,6 +112,7 @@ hdfs dfs -cat /output/part-r-00000
 
 ```
 
+### Lancer un job MapReduce via MR
 
 ```bash
 # Exemple 2 : WordCount via MR
