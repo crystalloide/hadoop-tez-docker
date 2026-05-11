@@ -84,8 +84,8 @@ docker exec -it namenode bash
 
 ```bash
 # Exemple : on prépare les répertoires pour faire un WordCount via Tez
-hdfs dfs -rmdir --ignore-fail-on-non-empty /input
-hdfs dfs -rmdir --ignore-fail-on-non-empty /output
+hdfs dfs -rm -r /input
+hdfs dfs -rm -r /output
 hdfs dfs -mkdir -p /input
 hdfs dfs -mkdir -p /output
 hdfs dfs -ls /
