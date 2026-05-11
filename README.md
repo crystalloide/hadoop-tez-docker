@@ -11,7 +11,40 @@
 ├── init-tez.sh                         ← Script one-shot : upload du tarball Tez sur HDFS
 └── test.sh                             ← Votre script de test (monté dans resourcemanager)
 ```
+### Hadoop : installation lancement et utilisation dans gitpod
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/crystalloide/Hadoop-docker)
+
+##### https://github.com/crystalloide/Hadoop-docker
+
+Projet 2026 
+________________________________________________________________________________________________
+
+#### Apache Hadoop
+
+    Apache Hadoop est un framework qui permet le traitement distribué de grands ensembles de données sur des clusters d'ordinateurs,
+    à l'aide de modèles de programmation simples. 
+    
+    Il est conçu pour passer d'un seul serveur à des milliers de machines, chacune offrant calcul et stockage en local. 
+    
+    Plutôt que de s'appuyer sur du matériel pour offrir une haute disponibilité, la bibliothèque elle-même est conçue pour détecter 
+    et gérer les pannes au niveau de la couche application, 
+    fournissant ainsi un service hautement disponible au-dessus d'un cluster d'ordinateurs, dont chacun peut être sujet à des pannes.
+
+#### Démarrage rapide
+    Un cluster Hadoop peut être créé en extrayant l'image Docker appropriée et en spécifiant les configurations requises.
+
+##### Sous Linux : clonage du projet : 
+```sh
+cd ~
+sudo rm -Rf Hadoop-docker
+
+git clone https://github.com/crystalloide/Hadoop-docker
+
+cd Hadoop-docker
+
+```
+    
 ## Démarrage
 
 ```bash
