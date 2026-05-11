@@ -17,7 +17,9 @@
 ```bash
 # 1. Construire l'image et démarrer le cluster
 docker compose -f docker-compose-cluster-latest.yml up --build
+```
 
+```bash
 # 2. Suivre les logs de l'init Tez
 docker compose -f docker-compose-cluster-latest.yml logs -f tez-init
 ```
