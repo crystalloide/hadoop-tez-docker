@@ -87,7 +87,6 @@ docker exec -it namenode bash
 hdfs dfs -rm -r /input
 hdfs dfs -rm -r /output
 hdfs dfs -mkdir -p /input
-hdfs dfs -mkdir -p /output
 hdfs dfs -ls /
 
 ```
