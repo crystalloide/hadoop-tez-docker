@@ -1,13 +1,37 @@
 ### Hadoop : installation lancement et utilisation dans gitpod
 
-
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/crystalloide/Hadoop-docker)
 
 ##### https://github.com/crystalloide/Hadoop-docker
 
-##### https://gitpod.io/workspaces
+Projet 2026 
+________________________________________________________________________________________________
+## Exécution_cluster_Big_Data
+Pour démarrer le cluster, exécutez les commandes suivantes depuis le répertoire du projet :
 
-##### https://hub.docker.com/r/apache/hadoop
+##### Sous Linux : clonage du projet : 
+```sh
+cd ~
+sudo rm -Rf Hadoop-docker
+
+git clone https://github.com/crystalloide/Hadoop-docker
+
+cd hadoop-2026
+
+```
+
+### Démarrer le cluster avec les composants : 
+
+Ce fichier démarre un cluster destiné à faire des expérimentations sur des machines limitées en ressource. 
+
+##### Sous Linux
+```sh
+docker compose -f docker-compose-cluster-latest.yml up -d
+```
+
+```sh
+docker ps -a
+```
 
 
 #### Apache Hadoop
