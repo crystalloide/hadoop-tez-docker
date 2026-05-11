@@ -13,7 +13,7 @@
 ```
 ### Hadoop : installation lancement et utilisation dans gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/crystalloide/Hadoop-docker)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/crystalloide/hadoop-tez-docker)
 
 ##### https://github.com/crystalloide/Hadoop-docker
 
@@ -37,11 +37,11 @@ ________________________________________________________________________________
 ##### Sous Linux : clonage du projet : 
 ```sh
 cd ~
-sudo rm -Rf Hadoop-docker
+sudo rm -Rf hadoop-tez-docker
 
-git clone https://github.com/crystalloide/Hadoop-docker
+git clone https://github.com/crystalloide/hadoop-tez-docker
 
-cd Hadoop-docker
+cd hadoop-tez-docker
 
 ```
     
@@ -67,16 +67,17 @@ Le cluster Hadoop est prêt à exécuter des jobs via Tez.
 
 ```bash
 # Vérifier que le tarball est bien sur HDFS
-docker exec <namenode_container> hdfs dfs -ls /apps/tez/
+docker exec namenode hdfs dfs -ls /apps/tez/
 
 # Vérifier la conf MapReduce (doit afficher "yarn-tez")
-docker exec <namenode_container> hdfs getconf -confKey mapreduce.framework.name
+docker exec namenode hdfs getconf -confKey mapreduce.framework.name
 ```
+
 
 ## Lancer un job MapReduce via Tez
 
 ```bash
-docker exec -it <namenode_container> bash
+docker exec -it namenode bash
 
 # Exemple : WordCount via Tez
 hdfs dfs -mkdir -p /input
