@@ -68,7 +68,9 @@ Le cluster Hadoop est prêt à exécuter des jobs via Tez.
 ```bash
 # Vérifier que le tarball est bien sur HDFS
 docker exec namenode hdfs dfs -ls /apps/tez/
+```
 
+```bash
 # Vérifier la conf MapReduce (doit afficher "yarn-tez")
 docker exec namenode hdfs getconf -confKey mapreduce.framework.name
 ```
@@ -78,8 +80,11 @@ docker exec namenode hdfs getconf -confKey mapreduce.framework.name
 
 ```bash
 docker exec -it namenode bash
+```
 
+```bash
 # Exemple : WordCount via Tez
+
 hdfs dfs -mkdir -p /input
 echo "hello world hello tez" | hdfs dfs -put - /input/test.txt
 
