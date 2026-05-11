@@ -83,7 +83,7 @@ docker exec -it namenode bash
 ```
 
 ```bash
-# Exemple : WordCount via Tez
+# Exemple : on prépare les répertoires pour faire un WordCount via Tez
 hdfs dfs -rmdir --ignore-fail-on-non-empty /input
 hdfs dfs -rmdir --ignore-fail-on-non-empty /output
 hdfs dfs -mkdir -p /input
@@ -92,8 +92,12 @@ hdfs dfs -ls /
 ```
 
 ```bash
+# Exemple : On crée le fichier en entrée du WordCount
 echo "hello world hello tez" | hdfs dfs -put - /input/test.txt
+```
 
+```bash
+# Exemple : WordCount via Tez
 yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar wordcount /input /output
 ```
 
