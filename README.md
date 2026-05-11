@@ -134,7 +134,10 @@ hdfs dfs -cat /output/part-r-00000
 
 ```
 
-Si on souhaitait revenir à MapReduce de façon permanente, il faudrait modifier simplement le fichier config :
+<img width="2552" height="537" alt="image" src="https://github.com/user-attachments/assets/bfbb7430-52bc-47b3-ab8a-ecee571ba28f" />
+
+
+### Si on souhaitait revenir à MapReduce de façon permanente, il faudrait modifier simplement le fichier config :
 
 Arrêter le cluster :
 
@@ -158,9 +161,6 @@ Redémarrer le cluster :
 ```bash
 docker compose -f docker-compose-cluster-latest.yml up -d
 ```
-
-<img width="2552" height="537" alt="image" src="https://github.com/user-attachments/assets/bfbb7430-52bc-47b3-ab8a-ecee571ba28f" />
-
 
 ## IHM Web
 
