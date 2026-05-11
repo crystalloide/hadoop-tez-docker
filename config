@@ -10,9 +10,9 @@ HDFS-SITE.XML_dfs.replication=1
 
 # ── MapReduce — utilisation de Tez comme moteur d'exécution ──────────────────
 MAPRED-SITE.XML_mapreduce.framework.name=yarn-tez
-MAPRED-SITE.XML_yarn.app.mapreduce.am.env=HADOOP_MAPRED_HOME=$HADOOP_HOME
-MAPRED-SITE.XML_mapreduce.map.env=HADOOP_MAPRED_HOME=$HADOOP_HOME
-MAPRED-SITE.XML_mapreduce.reduce.env=HADOOP_MAPRED_HOME=$HADOOP_HOME
+MAPRED-SITE.XML_yarn.app.mapreduce.am.env=HADOOP_MAPRED_HOME=/opt/hadoop/share/hadoop/
+MAPRED-SITE.XML_mapreduce.map.env=HADOOP_MAPRED_HOME=/opt/hadoop/share/hadoop/
+MAPRED-SITE.XML_mapreduce.reduce.env=HADOOP_MAPRED_HOME=/opt/hadoop/share/hadoop/
 
 # ── YARN ──────────────────────────────────────────────────────────────────────
 YARN-SITE.XML_yarn.resourcemanager.hostname=resourcemanager
@@ -20,6 +20,7 @@ YARN-SITE.XML_yarn.nodemanager.pmem-check-enabled=false
 YARN-SITE.XML_yarn.nodemanager.delete.debug-delay-sec=600
 YARN-SITE.XML_yarn.nodemanager.vmem-check-enabled=false
 YARN-SITE.XML_yarn.nodemanager.aux-services=mapreduce_shuffle
+YARN-SITE.XML_yarn.application.classpath=$HADOOP_HOME/etc/hadoop,$HADOOP_HOME/share/hadoop/common/*,$HADOOP_HOME/share/hadoop/common/lib/*,$HADOOP_HOME/share/hadoop/hdfs/*,$HADOOP_HOME/share/hadoop/hdfs/lib/*,$HADOOP_HOME/share/hadoop/mapreduce/*,$HADOOP_HOME/share/hadoop/mapreduce/lib/*,$HADOOP_HOME/share/hadoop/yarn/*,$HADOOP_HOME/share/hadoop/yarn/lib/*,/opt/tez/*,/opt/tez/lib/*
 
 # ── Capacity Scheduler ────────────────────────────────────────────────────────
 CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.maximum-applications=10000
